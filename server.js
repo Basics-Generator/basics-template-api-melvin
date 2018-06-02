@@ -17,7 +17,6 @@ var options = {
 mongoose.connect(config.database, options);
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/admin'));
 
 // views is directory for all template files
 app.set('/app/views', __dirname + '/app/views');

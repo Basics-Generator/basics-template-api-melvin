@@ -1,27 +1,26 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-	email		 	: 	String,
-	name	 		: 	String,
 	username		: 	String,
-	role 			: 	String,
-	desc 			:	String,
-	experiencedesc	: 	String,
+	password		: 	String,
+	lastname	 	: 	String,
+	firstname	 	: 	String,
+	email		 	: 	String,
 	phone 			:	String,
-	created			: 	Date,
-	active			: 	Boolean,
+	country 		: 	String,
+	city 			:	String,
+	postalCode		: 	String,
+	adress			: 	String,
+	birthday		: 	Date,
+	description		: 	String,
+	refreshToken	: 	String,
+	createdAt		: 	Date,
+	updateAt		: 	Date,
 
-	cv 				:	String,
-	avatar		 	: 	String,
+	photo		 	: 	String,
+	photoThumb		: 	String,
 
-	linkedin 		:	String,
-	fb 				:	String,
-	twitter 		:	String,
-	gmail 			:	String,
-	experiences 	: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Experience' }],
-	projects 		: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
-	services 		: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }]
-
+	enable			: 	Boolean,
 });
 
 module.exports = mongoose.model('User', userSchema);
