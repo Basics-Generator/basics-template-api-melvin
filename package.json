@@ -1,6 +1,11 @@
 {
-  "name": "node-authentication",
+  "name": "basics-nobullshit",
+  "description": "is fucking no bullshit app",
+  "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": "8.9.4"
+  },
   "dependencies": {
     "bcrypt": "^2.0.0",
     "bcrypt-nodejs": "latest",
