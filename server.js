@@ -9,7 +9,6 @@ var bodyParser      = require('body-parser');
 const PORT 			= process.env.PORT || 5000
 
 var options = {
-  useMongoClient: true,
   socketTimeoutMS: 0,
   keepAlive: true,
   reconnectTries: 30

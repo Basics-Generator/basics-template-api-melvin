@@ -38,13 +38,6 @@ class ResponseGenerator {
 		});
 	}
 
-	generateAlternative(res, endpoint, status, message, newAppointments) {// -> res 
-		return res.status(status).send({ 
-			endpoint: endpoint,
-			message: message,
-			newAppointments: newAppointments
-		});
-	}
 }
 
 module.exports = SharedResponseGenerator;

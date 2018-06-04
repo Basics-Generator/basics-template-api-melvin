@@ -14,13 +14,12 @@ var userSchema = mongoose.Schema({
 	birthday		: 	Date,
 	description		: 	String,
 	refreshToken	: 	String,
-	createdAt		: 	Date,
-	updateAt		: 	Date,
-
 	photo		 	: 	String,
 	photoThumb		: 	String,
-
-	enable			: 	Boolean,
+	createdAt		: 	Date,
+	updateAt		: 	Date,
+	enabled			: 	Boolean,
+	sessionsAuth 	: { type: mongoose.Schema.Types.ObjectId, ref: 'sessionAuth' }
 });
 
 module.exports = mongoose.model('User', userSchema);
