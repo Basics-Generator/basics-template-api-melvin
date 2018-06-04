@@ -1,5 +1,4 @@
-var express 					= require('express');
-var User  						= require('../../../models/user'); // get our mongoose model
+var User  						= require('../../../models/user/user'); // get our mongoose model
 var ResponseGenerator       	= require('../../../helper/ResponseGenerator'); // get our mongoose model
 
 var randomstring    			= require("randomstring");
@@ -57,25 +56,26 @@ function createUser(req, res, successCallback) {
 			fs.writeFile(photo_path, data_photo, function (err) {
 				if (err) throw err;
 				var newU = new User({
-					username		: req.body.username,
-					password		: hash,
-					lastname		: req.body.lastname,
-					firstname		: req.body.firstname,
-					email			: req.body.email,
-					phone			: req.body.phone,
-					country			: req.body.country,
-					city			: req.body.city,
-					postalCode		: req.body.postalCode,
-					adress			: req.body.adress,
-					birthday		: req.body.birthday,
-					description		: req.body.description,
-					refreshToken	: refreshToken,
-					photo			: "/uploads/photo/" + generated_photo_name,
-					photoThumb		: "/uploads/photo/" + generated_photo_name,
-					createdAt		: Date(),
-					updateAt		: Date(),
-					enabled			: true,
-					sessionsAuth	: null
+					username				: req.body.username,
+					password				: hash,
+					lastname				: req.body.lastname,
+					firstname				: req.body.firstname,
+					email					: req.body.email,
+					phone					: req.body.phone,
+					country					: req.body.country,
+					city					: req.body.city,
+					postalCode				: req.body.postalCode,
+					adress					: req.body.adress,
+					birthday				: req.body.birthday,
+					description				: req.body.description,
+					refreshToken			: refreshToken,
+					photo					: "/uploads/photo/" + generated_photo_name,
+					photoThumb				: "/uploads/photo/" + generated_photo_name,
+					createdAt				: Date(),
+					updateAt				: Date(),
+					enabled					: true,
+					sessionsAuth			: null,
+					sessionsChangePassword	: null
 				});	
 
 				newU.save(function(err) {

@@ -1,5 +1,5 @@
-var User                = require('../../../models/user');
-var SessionAuth         = require("../../../models/sessionAuth.js");
+var User                = require('../../../models/user/user');
+var SessionAuth         = require("../../../models/user/sessionAuth.js");
 
 var ResponseGenerator   = require('../../../helper/ResponseGenerator');
 var randomstring        = require("randomstring");
@@ -79,12 +79,11 @@ function createSessionAuth(user, req, res, successCallback) {
     var newSessionAuth = new SessionAuth({
         user            : user, 
         token           : token,
-        createdAt       : Date(),
-        updateAt        : Date()
+        createdAt       : Date()
     });     
     newSessionAuth.save(function(err) {
         if (err) throw err;
-        user.sessionsAuth = newSessionAuth;
+        user.sessionAuth = newSessionAuth;
         user.save(function(err) {
             if (err) throw err;
             successCallback(res, token);

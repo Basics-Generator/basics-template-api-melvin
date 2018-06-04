@@ -1,6 +1,6 @@
 var bodyParser      = require('body-parser');            // Charge le middleware de gestion des paramètres
 
-var SessionAuth    = require("../../../models/sessionAuth.js");
+var SessionAuth    = require("../../../models/user/sessionAuth.js");
 
 ////////////////////////////////////////////////////////////
 /////////////       VERIFICATION TOKEN          //////////// 
@@ -23,9 +23,9 @@ exports.isAuth = function (req, res, next) {
         });
     }
     else {
-        res.status(400).send({
+        res.status(403).send({
             endpoint: "VERIFICATION TOKEN",
-            message: "Missing parameters"
+            message: "Missing header token"
         });
     }
 }
