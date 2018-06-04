@@ -42,8 +42,6 @@ exports.change = function(req, res) {
 /////////          POST FORGOT PASSWORD         ////////////
 ////////////////////////////////////////////////////////////
 exports.forgot = function(req, res) {
-
-    console.log(req.body.email);
     if (req.body.email == undefined) {
         return ResponseGenerator.getInstance().generate(res, "FORGOT PASSWORD", 400, 'Missing parameters');
     }

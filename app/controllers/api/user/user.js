@@ -5,6 +5,7 @@ var randomstring    			= require("randomstring");
 var validator       			= require("email-validator");
 var bcrypt          			= require('bcrypt');
 var fs 							= require('fs');
+var path 						= require('path')
 
 const saltRounds    			= 10;
 
@@ -29,19 +30,23 @@ exports.create = function(req, res) {
 	User.findOne({username: req.body.username}).exec(function(err, user){
 		if (err) throw err;
 		if (user) { return ResponseGenerator.getInstance().generate(res, "CREATE USER", 409, 'Username already exist'); }
-		if (validator.validate(req.body.email)){
-            if (req.body.password.length > 6){
-                createUser(req, res, function(res) {
-                	return ResponseGenerator.getInstance().generate(res, "CREATE USER", 201, 'User created successfully')
-				});
-            }
-            else {
-                return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid Password (lenght need to be greater than 6)')
-            }
-        }
-        else {
-            return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid email')
-        }
+		User.findOne({email: req.body.email}).exec(function(err, user){
+			if (err) throw err;
+			if (user) { return ResponseGenerator.getInstance().generate(res, "CREATE USER", 409, 'Email already exist'); }
+			if (validator.validate(req.body.email)){
+	        if (req.body.password.length > 6){
+	                createUser(req, res, function(res) {
+	                	return ResponseGenerator.getInstance().generate(res, "CREATE USER", 201, 'User created successfully')
+					});
+	            }
+	            else {
+	                return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid Password (lenght need to be greater than 6)')
+	            }
+	        }
+	        else {
+	            return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid email')
+	        }
+		});
 	});
 }
 
@@ -69,8 +74,8 @@ function createUser(req, res, successCallback) {
 					birthday				: req.body.birthday,
 					description				: req.body.description,
 					refreshToken			: refreshToken,
-					photo					: "/uploads/photo/" + generated_photo_name,
-					photoThumb				: "/uploads/photo/" + generated_photo_name,
+					photo					: "/uploads/photo/" + generated_photo_name + path.extname(req.files.photo.path),
+					photoThumb				: "/uploads/photo/" + generated_photo_name + path.extname(req.files.photo.path),
 					createdAt				: Date(),
 					updateAt				: Date(),
 					enabled					: true,
