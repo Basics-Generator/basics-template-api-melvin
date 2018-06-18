@@ -1,7 +1,7 @@
 {
-  "name": "Basics Template NodeJs"
-  "description": "our basics templates for node js"
-  "repository": "https://github.com/Basics-Generator/basics-template"
+  "name": "Basics Template NodeJs",
+  "description": "our basics templates for node js",
+  "repository": "https://github.com/Basics-Generator/basics-template",
   "keywords": ["node", "express", "static"],
   "addons": [{ "plan": "mongolab:sandbox" }]
 }
