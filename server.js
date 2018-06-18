@@ -13,6 +13,7 @@ var options = {
   keepAlive: true,
   reconnectTries: 30
 };
+console.log(config.database);
 mongoose.connect(config.database, options);
 
 app.use(express.static(__dirname + '/public'));
