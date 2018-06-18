@@ -9,4 +9,4 @@ var sessionAuthSchema = mongoose.Schema({
 	createdAt		: 	String
 });
 
-module.exports = mongoose.model('sessionAuth', sessionAuthSchema);
+module.exports = mongoose.model('SessionAuth', sessionAuthSchema);

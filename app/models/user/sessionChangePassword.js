@@ -9,4 +9,4 @@ var sessionChangePasswordSchema = mongoose.Schema({
 	createdAt		: 	String
 });
 
-module.exports = mongoose.model('sessionChangePassword', sessionChangePasswordSchema);
+module.exports = mongoose.model('SessionChangePassword', sessionChangePasswordSchema);

@@ -10,4 +10,4 @@ var notificationSchema = mongoose.Schema({
 	createdAt		: 	String
 });
 
-module.exports = mongoose.model('notification', notificationSchema);
+module.exports = mongoose.model('Notification', notificationSchema);

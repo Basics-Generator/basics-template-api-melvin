@@ -9,4 +9,4 @@ var deviceSchema = mongoose.Schema({
 	createdAt		: 	String
 });
 
-module.exports = mongoose.model('device', deviceSchema);
+module.exports = mongoose.model('Device', deviceSchema);
