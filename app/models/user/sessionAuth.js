@@ -6,7 +6,7 @@ var sessionAuthSchema = mongoose.Schema({
 		ref : "User"
 	},
 	token			: 	String,
-	createdAt		: 	String
+	createdAt		: 	Date
 });
 
 module.exports = mongoose.model('SessionAuth', sessionAuthSchema);

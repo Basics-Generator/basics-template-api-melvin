@@ -6,7 +6,7 @@ var sessionChangePasswordSchema = mongoose.Schema({
 		ref : "User"
 	},
 	token			: 	String,
-	createdAt		: 	String
+	createdAt		: 	Date
 });
 
 module.exports = mongoose.model('SessionChangePassword', sessionChangePasswordSchema);

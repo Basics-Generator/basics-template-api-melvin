@@ -1,4 +1,5 @@
 var bodyParser      = require('body-parser');            // Charge le middleware de gestion des paramètres
+let date            = require('date-and-time');
 
 var SessionAuth    = require("../../../models/user/sessionAuth.js");
 
@@ -11,8 +12,16 @@ exports.isAuth = function (req, res, next) {
         SessionAuth.findOne({token : token}).populate('user').exec(function(err, sessionAuth) {
             if (err) throw err;
             if (sessionAuth) {
-                req.user = sessionAuth.user
-                next();
+                if (tokenIsExpired(sessionAuth)) {
+                    res.status(401).send({
+                        endpoint: "VERIFICATION TOKEN",
+                        message: "Token is expired"
+                    });
+                }
+                else {
+                    req.user = sessionAuth.user
+                    next();                    
+                }
             }
             else {
                 res.status(401).send({
@@ -29,3 +38,17 @@ exports.isAuth = function (req, res, next) {
         });
     }
 }
+
+function tokenIsExpired(sessionAuth) {
+    var now = new Date();
+    now.setTime(now.getTime() + (2*60*60*1000)); 
+    var diffMs = (now - sessionAuth.createdAt);
+    var diffDays = Math.floor(diffMs / 86400000); // days
+    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+    var nb_minutes = (diffDays * 1440) + (diffHrs * 60) + (diffMins);
+    if (nb_minutes > 120) {
+        return true;
+    }
+    return false;
+} 
