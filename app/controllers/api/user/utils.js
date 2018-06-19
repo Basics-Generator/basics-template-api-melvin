@@ -47,7 +47,7 @@ function tokenIsExpired(sessionAuth) {
     var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
     var nb_minutes = (diffDays * 1440) + (diffHrs * 60) + (diffMins);
-    if (nb_minutes > 120) {
+    if (nb_minutes > 240) {
         return true;
     }
     return false;
