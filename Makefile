@@ -17,8 +17,14 @@ status:
 down:
 	docker-compose down
 
+## Show node container logs
+log:
+	docker-compose logs -f node
+
 ## Stop and Start docker stack
-reboot: stop start
+reboot: stop_node start_node
+
+reboot_all: stop start
 
 ## Start docker stack
 start:
@@ -26,3 +32,9 @@ start:
 ## Stop docker stack
 stop:
 	docker-compose stop
+## Start docker stack
+start_node:
+	docker-compose up -d node
+## Stop docker stack
+stop_node:
+	docker-compose stop node
