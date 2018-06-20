@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  node:
+    container_name: "bt_node"
+    image: "node:8-stretch"
+    user: "node"
+    ports: [ "3000:3000" ]
+    env_file:
+      - .env
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    command: "npm start"
