@@ -10,4 +10,19 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
+    depends_on:
+      - mongodb
     command: "npm start"
+
+  mongodb:
+     container_name: "bt_mongodb"
+     image: "mongo"
+     ports: [ "27017:27017" ]
+     env_file:
+       - .env
+     restart: always
+     volumes:
+       - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

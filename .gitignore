@@ -1,3 +1,7 @@
+# User created files
+public/uploads/photo
+
+# Dependencies
 npm-debug.log
 node_modules
 
