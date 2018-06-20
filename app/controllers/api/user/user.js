@@ -5,7 +5,7 @@ var randomstring    			= require("randomstring");
 var validator       			= require("email-validator");
 var bcrypt          			= require('bcrypt');
 var fs 							= require('fs');
-var path 						= require('path')
+var path 						= require('path');
 
 const saltRounds    			= 10;
 
@@ -13,7 +13,6 @@ const saltRounds    			= 10;
 ////////////       POST CREATE USER             ////////////
 //////////////////////////////////////////////////////////// 
 exports.create = function(req, res) {
-
 	if (req.body.username == undefined || req.body.password == undefined || req.body.lastname == undefined || req.body.firstname == undefined ||
 		req.body.email == undefined || req.body.phone == undefined || req.body.country == undefined || req.body.city == undefined ||
 		req.body.postalCode == undefined || req.body.adress == undefined || req.body.birthday == undefined || req.body.description == undefined ||
@@ -27,26 +26,23 @@ exports.create = function(req, res) {
 		return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Empty parameters');
 	}
 
-	User.findOne({username: req.body.username}).exec(function(err, user){
+	User.find({$or:[ {'username': req.body.username}, {'email': req.body.email}]} , function(err, users) {
 		if (err) throw err;
-		if (user) { return ResponseGenerator.getInstance().generate(res, "CREATE USER", 409, 'Username already exist'); }
-		User.findOne({email: req.body.email}).exec(function(err, user){
-			if (err) throw err;
-			if (user) { return ResponseGenerator.getInstance().generate(res, "CREATE USER", 409, 'Email already exist'); }
-			if (validator.validate(req.body.email)){
-	        if (req.body.password.length > 6){
-	                createUser(req, res, function(res) {
-	                	return ResponseGenerator.getInstance().generate(res, "CREATE USER", 201, 'User created successfully')
-					});
-	            }
-	            else {
-	                return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid Password (lenght need to be greater than 6)')
-	            }
-	        }
-	        else {
-	            return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid email')
-	        }
-		});
+		if (users.length > 0) { return ResponseGenerator.getInstance().generate(res, "CREATE USER", 409, 'Email or username already exist'); }
+		if (validator.validate(req.body.email)) {
+        	if (req.body.password.length > 6) {
+                createUser(req, res, function(res) {
+                	return ResponseGenerator.getInstance().generate(res, "CREATE USER", 201, 'User created successfully')
+				});
+            }
+            else {
+                return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid Password (lenght need to be greater than 6)')
+            }
+        }
+        else {
+            return ResponseGenerator.getInstance().generate(res, "CREATE USER", 400, 'Invalid email')
+        }
+
 	});
 }
 

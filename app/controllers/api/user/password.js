@@ -5,7 +5,6 @@ var ResponseGenerator       = require('../../../helper/ResponseGenerator');
 var Mailer                  = require('../../../helper/Mailer');
 
 var randomstring            = require("randomstring");
-var bodyParser              = require('body-parser');
 var bcrypt                  = require('bcrypt');
 
 const saltRounds            = 10;

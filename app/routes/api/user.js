@@ -6,7 +6,6 @@ var auth            		= require('../../controllers/api/user/auth.js');
 var utils            		= require('../../controllers/api/user/utils.js');
 var password            	= require('../../controllers/api/user/password.js'); 
 
-
 var multipart 				= require('connect-multiparty');
 var multipartMiddleware 	= multipart();
 
