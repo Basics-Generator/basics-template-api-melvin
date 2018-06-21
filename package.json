@@ -3,6 +3,11 @@
   "description": "is fucking no bullshit app",
   "version": "1.0.0",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
   "engines": {
     "node": "8.9.4"
   },
@@ -26,5 +31,8 @@
     "package.json": "^2.0.1",
     "randomstring": "^1.1.5",
     "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }

@@ -27,6 +27,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 
 app.use(route); 
 
-app.listen(PORT, function() {
-  console.log('Node app is running on port', PORT);
+app.listen(PORT, () => {
+  console.log(`Node app is running on port ${PORT}`);
 });
