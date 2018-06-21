@@ -1,13 +1,13 @@
-var express                 = require('express');
-var router                  = express.Router();
+const express             = require('express');
+const router              = express.Router();
 
-var utils            		= require('../../controllers/api/user/utils.js'); 
-var event            		= require('../../controllers/api/event/event.js'); 
+const utils               = require('../../controllers/api/user/utils.js'); 
+const event               = require('../../controllers/api/event/event.js'); 
 
-var multipart 				= require('connect-multiparty');
-var multipartMiddleware 	= multipart();
+const multipart           = require('connect-multiparty');
+const multipartMiddleware = multipart();
 
-router.post('/create', utils.isAuth, multipartMiddleware, event.create);  //CREATE EVENT
+router.post('/add', utils.isAuth, multipartMiddleware, event.add);  //CREATE EVENT
 router.get('/list', utils.isAuth, event.list);
 
 module.exports = router;
