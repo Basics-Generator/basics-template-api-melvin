@@ -30,8 +30,12 @@ exports.add = function(req, res) {
 	}
 }
 
+////////////////////////////////////////////////////////////
+////////////            CREATE EVENT            ////////////
+//////////////////////////////////////////////////////////// 
 function addEvent(req, res, successCallback) {
 	var newEvent = new Event({
+		user			: req.user,
 		title           : req.body.title,
 		description		: req.body.description,
 		startDate		: req.body.startDate,
@@ -44,8 +48,21 @@ function addEvent(req, res, successCallback) {
 	});
 }
 
+////////////////////////////////////////////////////////////
+////////////              GET EVENT             ////////////
+//////////////////////////////////////////////////////////// 
 exports.list = (req, res) => {
 	Event.find({}).exec((err, events) => {
+		if (err) throw err;
+		return res.status(200).send({ endpoint: "GET EVENT", message: "Get events list successfully", events:events });
+	});
+}
+
+////////////////////////////////////////////////////////////
+////////////       GET EVENT W/ USER            ////////////
+//////////////////////////////////////////////////////////// 
+exports.all = (req, res) => {
+	Event.find({}).populate('user').exec((err, events) => {
 		if (err) throw err;
 		return res.status(200).send({ endpoint: "GET EVENT", message: "Get events list successfully", events:events });
 	});

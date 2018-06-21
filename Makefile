@@ -1,7 +1,7 @@
 ## Makefile intended to perform a fast development environment boot
 
-## Install dependencies then start server
-all: build reboot
+## Install dependencies, start containers, attach STDOUT to node container
+all: build reboot log
 
 ## Install dependencies with NPM
 ## @TODO: Use yarn

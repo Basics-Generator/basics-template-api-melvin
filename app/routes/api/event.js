@@ -9,5 +9,6 @@ const multipartMiddleware = multipart();
 
 router.post('/add', utils.isAuth, multipartMiddleware, event.add);  //CREATE EVENT
 router.get('/list', utils.isAuth, event.list);
+router.get('/all', utils.isAuth, event.all);
 
 module.exports = router;
