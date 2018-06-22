@@ -5,9 +5,11 @@ all: build reboot log
 
 ## Install dependencies with NPM
 ## @TODO: Use yarn
-build:
-	cp -fa .env.dist .env
+build: build_env
 	docker run --rm -v ${PWD}:/app -w /app node:8-stretch npm install
+
+build_env:
+	@if [[ ! -f .env ]]; then cp -fa .env.dist .env ; else echo ".env file already exist. Abort." ; fi
 
 ## Show containers state
 status:

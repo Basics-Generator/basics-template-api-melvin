@@ -7,7 +7,7 @@ const app 			 = express();
 
 const bodyParser = require('body-parser');
 
-const PORT 			 = process.env.PORT || 3000
+const NODE_PORT 			 = process.env.NODE_PORT || 3000
 
 var options = {
   socketTimeoutMS: 0,
@@ -27,6 +27,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 
 app.use(route); 
 
-app.listen(PORT, () => {
-  console.log(`Node app is running on port ${PORT}`);
+app.listen(NODE_PORT, () => {
+  console.log(`Node app is running on port ${NODE_PORT}`);
 });
