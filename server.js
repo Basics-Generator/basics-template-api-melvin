@@ -19,7 +19,7 @@ mongoose.connect(config.database, options);
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
-app.set('views', __dirname + '/app/views');
+app.set('views', __dirname + '/views');
 app.set('views engine', 'ejs');
 
 app.use(bodyParser.json({limit: '50mb'}));

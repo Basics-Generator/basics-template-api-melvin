@@ -4,7 +4,7 @@ services:
     container_name: "bt_node"
     image: "node:8-stretch"
     user: "node"
-    ports: [ "3000:3000" ]
+    ports: [ "${NODE_PORT}:${NODE_PORT}" ]
     env_file:
       - .env
     working_dir: /home/node/app
@@ -17,7 +17,7 @@ services:
   mongodb:
      container_name: "bt_mongodb"
      image: "mongo"
-     ports: [ "27017:27017" ]
+     ports: [ "${MONGO_PORT}:${MONGO_PORT}" ]
      env_file:
        - .env
      restart: always
